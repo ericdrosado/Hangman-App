@@ -14,7 +14,3 @@ class Game
   
 end
 
-view = View.new
-prompter = Prompter.new
-game = Game.new(prompter, view)
-game.game_handler

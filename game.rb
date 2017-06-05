@@ -1,15 +1,15 @@
 require_relative 'prompter'
-require_relative 'view'
+require_relative 'io'
 
 class Game
 
-  def initialize prompter, view
+  def initialize prompter, io
     @prompter = prompter
-    @view = view
+    @io = io
   end
 
   def game_handler
-    @view.printer(@prompter.game_greeting)
+    @io.printer(@prompter.game_greeting)
   end
   
 end

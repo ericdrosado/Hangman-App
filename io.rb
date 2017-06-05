@@ -1,4 +1,4 @@
-class View
+class IO
 
   def printer printable_item
     puts printable_item

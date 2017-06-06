@@ -6,16 +6,16 @@ describe 'Prompter' do
   
   describe 'game_greeting' do
 
-    it 'returns a string' do
+    it 'will return a string' do
       expect(prompter.game_greeting).to eq "Welcome to Hangman!"
     end
 
   end
 
-  describe 'choose_word_prompt' do
+  describe 'prompt_for_word' do
 
-    it 'returns a string' do
-      expect(prompter.choose_word_prompt).to eq "Please choose a word for Hangman"
+    it 'will return a string' do
+      expect(prompter.prompt_for_word).to eq "Player 1, please choose a word for Hangman."
     end
 
   end

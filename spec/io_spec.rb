@@ -1,6 +1,7 @@
 require_relative '../io'
 
 describe 'IO' do
+  
   mock_io = MockIO.new
   prompter = Prompter.new
   

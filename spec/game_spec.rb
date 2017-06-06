@@ -2,6 +2,7 @@ require_relative '../game'
 require_relative 'mocks/mock_io'
 
 describe 'Game' do
+  
   mock_io = MockIO.new
   prompter = Prompter.new
   game = Game.new(prompter, mock_io)

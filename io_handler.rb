@@ -8,8 +8,4 @@ class IOHandler
     gets.chomp
   end
 
-  def word_blank word
-    word = word.gsub(/[a-zA-Z]/, "_ ")
-  end
-
 end

@@ -19,5 +19,13 @@ describe 'Prompter' do
     end
 
   end
+
+  describe '#prompt_for_letter' do
+
+    it 'will return a string' do
+      expect(prompter.prompt_for_letter).to eq "Player 2, please choose a letter for Hangman."
+    end
+
+  end
   
 end

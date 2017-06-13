@@ -1,36 +1,22 @@
 require_relative '../io_handler'
 
 describe 'IOHandler' do
+    
+    io_handler = IOHandler.new
   
-  mock_io_handler = MockIOHandler.new
-  prompter = Prompter.new
-  
-  describe 'printer' do
+  describe '#printer' do
 
-    it 'will print game_greeting to terminal' do
-      mock_io_handler.printer(prompter.game_greeting)
-      expect(mock_io_handler.output_called_with).to eq "Welcome to Hangman!"
+    it 'will print to terminal' do
+      expect{io_handler.printer("Welcome to Hangman!")}.to output.to_stdout
     end
 
   end
 
-  describe 'get_input' do
+  describe '#get_input' do
 
     it 'will equal input' do
-      mock_io_handler.stubbed_value = "test"
-      expect(mock_io_handler.get_input).to eq "test"
-    end
-
-  end
-
-  describe 'word_blank' do
-
-    it 'will take a string and replace with "_"' do
-      expect(mock_io_handler.word_blank('test')).to eq '_ _ _ _ '
-    end
-
-    it 'will take a string and replace with "_"' do
-      expect(mock_io_handler.word_blank('testing')).to eq '_ _ _ _ _ _ _ '
+      expect(io_handler).to receive(:get_input).and_return("test")
+      expect(io_handler.get_input).to eq "test"
     end
 
   end

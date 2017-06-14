@@ -20,4 +20,8 @@ class Validator
     word == word_guess
   end
 
+  def has_blanks? word
+    word.include? "_"
+  end
+
 end

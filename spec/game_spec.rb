@@ -61,6 +61,10 @@ describe 'Game' do
       expect(game_view).to receive :guessed_letters
     end
 
+    it 'will receive prompt_for_word_guess from prompter' do
+      expect(prompter).to receive :prompt_for_word_guess
+    end
+
   end
 
 end

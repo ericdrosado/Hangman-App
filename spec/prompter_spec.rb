@@ -27,5 +27,29 @@ describe 'Prompter' do
     end
 
   end
+
+  describe '#prompt_for_word_guess' do
+
+    it 'will return a string' do
+      expect(prompter.prompt_for_word_guess).to eq "Do you know the answer? Type in your guess or type 'no' if you do not know."
+    end
+
+  end
+
+  describe '#prompt_incorrect_guess' do
+
+    it 'will return a string' do
+      expect(prompter.prompt_incorrect_guess).to eq "Your guess is incorrect."
+    end
+
+  end
+
+  describe '#prompt_you_win' do
+
+    it 'will return a string' do
+      expect(prompter.prompt_you_win).to eq "You win!"
+    end
+
+  end
   
 end

@@ -44,4 +44,12 @@ describe 'Validator' do
 
   end
 
+  describe '#correct_word?' do
+
+    it 'will return false if user guess is not correct word' do
+      expect(validator.correct_word?("test", "no")).to be false
+    end
+
+  end
+
 end

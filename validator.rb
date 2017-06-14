@@ -16,4 +16,8 @@ class Validator
     end
   end
 
+  def correct_word? word, word_guess
+    word == word_guess
+  end
+
 end

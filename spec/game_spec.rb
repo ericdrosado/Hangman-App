@@ -11,9 +11,7 @@ describe 'Game' do
   validator = Validator.new(prompter, mock_io_handler)
   game = Game.new(game_view, mock_io_handler, prompter, validator)
 
-  describe '#play_game' do
-
-    before do
+  before do
       mock_io_handler.get_input.stub(:upcase)
       mock_io_handler.get_input.stub(:downcase)
       validator.stub(:validate_selection)
@@ -23,14 +21,42 @@ describe 'Game' do
       game_view.stub(:clear_view)
     end
 
+  describe '#play_game' do
+
     after { game.play_game }
+
+    it 'will receive prompt_for_game_greeting from prompter' do
+      expect(prompter).to receive :prompt_for_game_greeting
+    end
 
     it 'will receive print from mock_io_handler' do
       expect(mock_io_handler).to receive(:print).at_least(:once)
     end
 
-    it 'will receive prompt_for_game_greeting from prompter' do
-      expect(prompter).to receive :prompt_for_game_greeting
+    it 'will receive player_one_play_game from game' do
+      expect(game).to receive(:player_one_play_game)
+    end
+
+    it 'will receive clear_view from game_view' do
+      expect(game_view).to receive :clear_view
+    end
+
+    it 'will receive blank_word from game_view' do
+      expect(game_view).to receive :blank_word
+    end
+
+    it 'will receive player_one_play_game from game' do
+      expect(game).to receive(:player_two_play_game)
+    end
+
+  end
+
+  describe '#player_one_play_game' do
+
+    after { game.player_one_play_game }
+
+    it 'will receive print from mock_io_handler' do
+      expect(mock_io_handler).to receive(:print).at_least(:once)
     end
 
     it 'will receive prompt_for_word from prompter' do
@@ -41,8 +67,27 @@ describe 'Game' do
       expect(validator).to receive :validate_selection
     end
 
-    it 'will receive clear_view from game_view' do
-      expect(game_view).to receive :clear_view
+    it 'will return an upcase word' do
+      expect(validator).to receive(:validate_selection).and_return("test")
+      expect(game.player_one_play_game).to eq "TEST"
+    end
+
+  end
+
+  describe '#player_two_play_game' do
+
+    after { game.player_two_play_game("test") }
+
+    it 'will receive prompt_for_letter from prompter' do
+      expect(prompter).to receive(:prompt_for_letter).at_least(:once)
+    end
+
+    it 'will receive print from mock_io_handler' do
+      expect(mock_io_handler).to receive(:print).at_least(:once)
+    end
+
+    it 'will receive validate_selection from validator' do
+      expect(validator).to receive :validate_selection
     end
 
     it 'will receive guessed_letters_view from game_view' do
@@ -53,12 +98,30 @@ describe 'Game' do
       expect(game_view).to receive :swap_letters_by_case
     end
 
+    it 'will receive blank_word from game_view' do
+      expect(game_view).to receive :blank_word
+    end
+
     it 'will receive guessed_letters from game_view' do
       expect(game_view).to receive :guessed_letters
     end
 
     it 'will receive prompt_for_word_guess from prompter' do
       expect(prompter).to receive :prompt_for_word_guess
+    end
+
+    it 'will receive get_input from mock_io_handler' do
+      expect(mock_io_handler).to receive(:get_input)
+    end
+
+    it 'will return "You win!" if player two wins' do
+      expect(game).to receive(:player_two_play_game).and_return(prompter.prompt_you_win).at_least(:once)
+      expect(game.player_two_play_game("test")).to eq "You win!"
+    end
+
+    it 'will return "You lose!" if player two loses' do
+      expect(game).to receive(:player_two_play_game).and_return(prompter.prompt_you_lose).at_least(:once)
+      expect(game.player_two_play_game("test")).to eq "You lose!"
     end
 
   end

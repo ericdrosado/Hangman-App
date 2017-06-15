@@ -21,11 +21,23 @@ class Validator
   end
 
   def correct_word? word, word_guess
-    word == word_guess
+    word.upcase == word_guess.upcase
   end
 
-  def has_blanks? word
-    word.include? "_"
+  def all_downcase? word
+    !! word.match(/^[a-z]+$/)
+  end
+
+  def end_of_game? word, word_guess, counter
+    correct_word?(word, word_guess) || all_downcase?(word) || counter == 6
+  end
+
+  def validate_win_or_loss counter
+    if counter == 6
+      @prompter.prompt_you_lose
+    else
+      @prompter.prompt_you_win
+    end
   end
 
 end

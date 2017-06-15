@@ -16,12 +16,12 @@ class Prompter
     "Do you know the answer? Type in your guess or type 'no' if you do not know."
   end
 
-  def prompt_incorrect_guess
-    "Your guess is incorrect."
-  end
-
   def prompt_you_win
     "You win!"
+  end
+
+  def prompt_you_lose
+    "You lose!"
   end
 
 end

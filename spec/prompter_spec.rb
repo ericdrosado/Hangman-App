@@ -36,14 +36,6 @@ describe 'Prompter' do
 
   end
 
-  describe '#prompt_incorrect_guess' do
-
-    it 'will return a string' do
-      expect(prompter.prompt_incorrect_guess).to eq "Your guess is incorrect."
-    end
-
-  end
-
   describe '#prompt_you_win' do
 
     it 'will return a string' do

@@ -62,14 +62,14 @@ describe 'Validator' do
 
     it 'will prompt if not a word and take in a new word' do
       expect(mock_io_handler).to receive(:get_input).and_return('t')
-      expect(mock_io_handler).to receive(:printer).with('Player 1, please choose a word for Hangman.')
+      expect(mock_io_handler).to receive(:print).with('Player 1, please choose a word for Hangman.')
       expect(mock_io_handler).to receive(:get_input).and_return('test')
       expect(validator.validate_selection(prompter.prompt_for_word, 'is_a_word?')).to eq "test"
     end
 
     it 'will prompt if not a word and take in a new word' do
       expect(mock_io_handler).to receive(:get_input).and_return('test')
-      expect(mock_io_handler).to receive(:printer).with('Player 2, please choose a letter for Hangman.')
+      expect(mock_io_handler).to receive(:print).with('Player 2, please choose a letter for Hangman.')
       expect(mock_io_handler).to receive(:get_input).and_return('t')
       expect(validator.validate_selection(prompter.prompt_for_letter, 'is_a_letter?')).to eq "t"
     end

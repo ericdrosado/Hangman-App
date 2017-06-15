@@ -4,26 +4,26 @@ describe 'GameView' do
 
   game_view = GameView.new
   
-  describe '#word_blank' do
+  describe '#blank_word' do
 
     it 'will blank uppercase letters T and S' do
-      expect(game_view.word_blank("TeSt")).to eq "_ e_ t"
+      expect(game_view.blank_word("TeSt")).to eq "_ e_ t"
     end
 
     it 'will blank uppercase letters T and E' do
-      expect(game_view.word_blank("TEst")).to eq "_ _ st"
+      expect(game_view.blank_word("TEst")).to eq "_ _ st"
     end
 
   end
 
-  describe '#letter_swap' do
+  describe '#swap_letters_by_case' do
 
     it 'will swap capital letter T for lowercase t' do
-      expect(game_view.letter_swap("TEST", "t")).to eq "tESt"
+      expect(game_view.swap_letters_by_case("TEST", "t")).to eq "tESt"
     end
 
     it 'will swap capital letter E for lowercase e' do
-      expect(game_view.letter_swap("TEST", "e")).to eq "TeST"
+      expect(game_view.swap_letters_by_case("TEST", "e")).to eq "TeST"
     end
 
   end

@@ -6,11 +6,11 @@ class GameView
     @guessed_letters = "Your guessed letters are:  "
   end
 
-  def word_blank word
+  def blank_word word
     word = word.gsub(/[A-Z]/, "_ ")
   end
 
-  def letter_swap word, letter
+  def swap_letters_by_case word, letter
     word = word.gsub(letter.upcase, letter)
   end
 

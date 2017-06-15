@@ -4,10 +4,10 @@ describe 'IOHandler' do
     
     io_handler = IOHandler.new
   
-  describe '#printer' do
+  describe '#print' do
 
     it 'will print to terminal' do
-      expect{io_handler.printer("Welcome to Hangman!")}.to output.to_stdout
+      expect{io_handler.print("Welcome to Hangman!")}.to output.to_stdout
     end
 
   end

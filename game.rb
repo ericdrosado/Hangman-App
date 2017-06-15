@@ -11,18 +11,18 @@ class Game
   end
 
   def play_game
-    @io_handler.printer(@prompter.game_greeting)
-    @io_handler.printer(@prompter.prompt_for_word)
+    @io_handler.print(@prompter.prompt_for_game_greeting)
+    @io_handler.print(@prompter.prompt_for_word)
     word = @validator.validate_selection(@prompter.prompt_for_word, 'is_a_word?')
     word = word.upcase
     @game_view.clear_view
-    @io_handler.printer(@prompter.prompt_for_letter)
-    @io_handler.printer(@game_view.word_blank(word))
+    @io_handler.print(@prompter.prompt_for_letter)
+    @io_handler.print(@game_view.blank_word(word))
     letter = @validator.validate_selection(@prompter.prompt_for_letter, 'is_a_letter?')
     letter = letter.downcase
     @game_view.guessed_letters_view(letter)
-    @io_handler.printer(@game_view.word_blank(@game_view.letter_swap(word, letter)))
-    @io_handler.printer(@game_view.guessed_letters)
+    @io_handler.print(@game_view.blank_word(@game_view.swap_letters_by_case(word, letter)))
+    @io_handler.print(@game_view.guessed_letters)
   end
   
 end

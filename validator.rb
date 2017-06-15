@@ -15,7 +15,7 @@ class Validator
 
   def validate_selection prompt, validation_type
     while ! public_send(validation_type, type = @io_handler.get_input)
-      @io_handler.printer(prompt)
+      @io_handler.print(prompt)
     end
     type
   end

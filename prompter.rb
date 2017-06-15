@@ -1,6 +1,6 @@
 class Prompter
 
-  def game_greeting
+  def prompt_for_game_greeting
     "Welcome to Hangman!"
   end
 

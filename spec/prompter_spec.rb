@@ -7,7 +7,7 @@ describe 'Prompter' do
   describe '#game_greeting' do
 
     it 'will return a string' do
-      expect(prompter.game_greeting).to eq "Welcome to Hangman!"
+      expect(prompter.prompt_for_game_greeting).to eq "Welcome to Hangman!"
     end
 
   end

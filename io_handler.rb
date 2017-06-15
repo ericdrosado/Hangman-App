@@ -1,6 +1,6 @@
 class IOHandler
 
-  def printer printable_item
+  def print printable_item
     puts printable_item
   end
 

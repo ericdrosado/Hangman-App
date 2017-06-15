@@ -1,8 +1,12 @@
-require_relative '../Validator'
+require_relative '../validator'
+require_relative '../prompter'
+require_relative 'mocks/mock_io_handler'
 
 describe 'Validator' do
 
-  validator = Validator.new
+  prompter = Prompter.new
+  mock_io_handler = MockIOHandler.new
+  validator = Validator.new(prompter, mock_io_handler)
   
   describe '#is_a_word?' do
 
@@ -64,6 +68,31 @@ describe 'Validator' do
 
     it 'will return false if blanked word has no blanks' do
       expect(validator.has_blanks?("TEST")).to be false
+
+  describe '#validate_selection' do
+
+    it 'will return a word if "is_a_word" is passed' do
+      expect(mock_io_handler).to receive(:get_input).and_return('test')
+      expect(validator.validate_selection(prompter.prompt_for_word, 'is_a_word?')).to eq "test"
+    end
+
+    it 'will return a letter if "is_a_letter" is passed' do
+      expect(mock_io_handler).to receive(:get_input).and_return('t')
+      expect(validator.validate_selection(prompter.prompt_for_letter, 'is_a_letter?')).to eq "t"
+    end
+
+    it 'will prompt if not a word and take in a new word' do
+      expect(mock_io_handler).to receive(:get_input).and_return('t')
+      expect(mock_io_handler).to receive(:print).with('Player 1, please choose a word for Hangman.')
+      expect(mock_io_handler).to receive(:get_input).and_return('test')
+      expect(validator.validate_selection(prompter.prompt_for_word, 'is_a_word?')).to eq "test"
+    end
+
+    it 'will prompt if not a word and take in a new word' do
+      expect(mock_io_handler).to receive(:get_input).and_return('test')
+      expect(mock_io_handler).to receive(:print).with('Player 2, please choose a letter for Hangman.')
+      expect(mock_io_handler).to receive(:get_input).and_return('t')
+      expect(validator.validate_selection(prompter.prompt_for_letter, 'is_a_letter?')).to eq "t"
     end
 
   end

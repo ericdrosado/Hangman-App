@@ -18,4 +18,8 @@ class GameView
     @guessed_letters = @guessed_letters.concat(letter + " ")
   end
 
+  def clear_view
+    system "clear"
+  end
+
 end

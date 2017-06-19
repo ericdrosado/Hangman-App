@@ -2,8 +2,8 @@ language: ruby
 rvm:
   - 2.2
 script: 
-  - ./spec/game_spec.rb
-  - ./spec/game_view_spec.rb
-  - ./spec/io_handler_spec.rb
-  - ./spec/prompter_spec.rb
-  - ./spec/validator_spec.rb
+  - rspec ./spec/game_spec.rb
+  - rspec ./spec/game_view_spec.rb
+  - rspec ./spec/io_handler_spec.rb
+  - rspec ./spec/prompter_spec.rb
+  - rspec ./spec/validator_spec.rb

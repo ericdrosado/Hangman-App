@@ -33,8 +33,8 @@ describe 'Game' do
       expect(mock_io_handler).to receive(:print).at_least(:once)
     end
 
-    it 'will receive player_one_play_game from game' do
-      expect(game).to receive(:player_one_play_game)
+    it 'will receive player_one_pick_word from game' do
+      expect(game).to receive(:player_one_pick_word)
     end
 
     it 'will receive clear_view from game_view' do
@@ -45,15 +45,15 @@ describe 'Game' do
       expect(game_view).to receive :blank_word
     end
 
-    it 'will receive player_one_play_game from game' do
-      expect(game).to receive(:player_two_play_game)
+    it 'will receive player_one_pick_word from game' do
+      expect(game).to receive(:player_two_guess_word)
     end
 
   end
 
-  describe '#player_one_play_game' do
+  describe '#player_one_pick_word' do
 
-    after { game.player_one_play_game }
+    after { game.player_one_pick_word }
 
     it 'will receive print from mock_io_handler' do
       expect(mock_io_handler).to receive(:print).at_least(:once)
@@ -69,14 +69,14 @@ describe 'Game' do
 
     it 'will return an upcase word' do
       expect(validator).to receive(:validate_selection).and_return("test")
-      expect(game.player_one_play_game).to eq "TEST"
+      expect(game.player_one_pick_word).to eq "TEST"
     end
 
   end
 
-  describe '#player_two_play_game' do
+  describe '#player_two_guess_word' do
 
-    after { game.player_two_play_game("test") }
+    after { game.player_two_guess_word("test") }
 
     it 'will receive prompt_for_letter from prompter' do
       expect(prompter).to receive(:prompt_for_letter).at_least(:once)
@@ -115,13 +115,13 @@ describe 'Game' do
     end
 
     it 'will return "You win!" if player two wins' do
-      expect(game).to receive(:player_two_play_game).and_return(prompter.prompt_you_win).at_least(:once)
-      expect(game.player_two_play_game("test")).to eq "You win!"
+      expect(game).to receive(:player_two_guess_word).and_return(prompter.prompt_you_win).at_least(:once)
+      expect(game.player_two_guess_word("test")).to eq "You win!"
     end
 
     it 'will return "You lose!" if player two loses' do
-      expect(game).to receive(:player_two_play_game).and_return(prompter.prompt_you_lose).at_least(:once)
-      expect(game.player_two_play_game("test")).to eq "You lose!"
+      expect(game).to receive(:player_two_guess_word).and_return(prompter.prompt_you_lose).at_least(:once)
+      expect(game.player_two_guess_word("test")).to eq "You lose!"
     end
 
   end

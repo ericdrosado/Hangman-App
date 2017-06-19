@@ -12,18 +12,18 @@ class Game
 
   def play_game
     @io_handler.print(@prompter.prompt_for_game_greeting)
-    word = player_one_play_game
+    word = player_one_pick_word
     @game_view.clear_view
     @io_handler.print(@game_view.blank_word(word))
-    @io_handler.print(player_two_play_game(word))
+    @io_handler.print(player_two_guess_word(word))
   end
 
-  def player_one_play_game
+  def player_one_pick_word
     @io_handler.print(@prompter.prompt_for_word)
     @validator.validate_selection(@prompter.prompt_for_word, 'is_a_word?').upcase
   end
 
-  def player_two_play_game word
+  def player_two_guess_word word
     counter = 0
     end_of_game = false
     while ! end_of_game

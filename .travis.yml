@@ -2,9 +2,4 @@ language: ruby
 rvm:
   - 2.2
 install: gem install rspec
-script: 
-  - rspec ./spec/game_spec.rb
-  - rspec ./spec/io_handler_spec.rb
-  - rspec ./spec/prompter_spec.rb
-  - rspec ./spec/validator_spec.rb
-  - rspec ./spec/game_view_spec.rb
+script: rspec

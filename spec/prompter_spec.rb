@@ -31,7 +31,7 @@ describe 'Prompter' do
   describe '#prompt_for_word_guess' do
 
     it 'will return a string' do
-      expect(prompter.prompt_for_word_guess).to eq "Do you know the answer? Type in your guess or type 'no' if you do not know."
+      expect(prompter.prompt_for_word_guess).to eq "Do you know the answer? Leave this area blank and press enter if you do not know."
     end
 
   end

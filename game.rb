@@ -24,9 +24,12 @@ class Game
   end
 
   def player_two_guess_word word
+    body_array = [@game_view.display_hangman_head, @game_view.display_hangman_upper_torso, @game_view.display_hangman_arms, 
+                  @game_view.display_hangman_lower_torso, @game_view.display_hangman_legs, @game_view.display_hangman_feet]
     counter = 0
     end_of_game = false
     while ! end_of_game
+        @io_handler.print(body_array)
         @io_handler.print(@prompter.prompt_for_letter)
         letter = @validator.validate_selection(@prompter.prompt_for_letter, 'is_a_letter?').downcase
         @game_view.guessed_letters_view(letter)

@@ -22,4 +22,28 @@ class GameView
     system "clear"
   end
 
+  def display_hangman_head
+    "      " + "_____\n" + "     " + "( * * )\n" +  "      " + "(___)"
+  end
+
+  def display_hangman_upper_torso
+    "        " + "|\n" + "        " + "|\n" 
+  end
+
+  def display_hangman_arms
+    "    " + "\\___" + "|" + "___/"
+  end
+
+  def display_hangman_lower_torso
+    "        " + "|\n" + "        " + "|\n" 
+  end
+
+  def display_hangman_legs
+    "       " + "/ \\\n" + "      " + "/   \\\n" + "     " + "/     \\"
+  end
+
+  def display_hangman_feet
+    "   " + "__|" + "     |__"
+  end
+
 end

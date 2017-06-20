@@ -27,7 +27,7 @@ class Game
     counter = 0
     end_of_game = false
     while ! end_of_game
-        @io_handler.print(@game_view.initialize_hangman_body)
+        @io_handler.print(@game_view.body_array)
         @io_handler.print(@prompter.prompt_for_letter)
         letter = @validator.validate_selection(@prompter.prompt_for_letter, 'is_a_letter?').downcase
         @game_view.guessed_letters_view(letter)

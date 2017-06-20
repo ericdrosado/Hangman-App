@@ -88,14 +88,4 @@ describe 'GameView' do
 
   end
 
-  describe '#initialize_hangman_body' do
-
-    it 'will return an array' do
-      expect(game_view.initialize_hangman_body).to match_array [game_view.display_hangman_head, game_view.display_hangman_upper_torso, 
-                                                                game_view.display_hangman_arms, game_view.display_hangman_lower_torso, 
-                                                                game_view.display_hangman_legs, game_view.display_hangman_feet]
-    end
-
-  end
-
 end

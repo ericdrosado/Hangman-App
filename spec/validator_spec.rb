@@ -132,6 +132,20 @@ describe 'Validator' do
 
   end
 
+  describe '#is_word_guess_blank?' do
+
+    it 'will return true if word_guess is blank' do
+      word = ""
+      expect(validator.is_word_guess_blank?(word)).to be true
+    end
+
+    it 'will return false if word_guess is not blank' do
+      word = "test"
+      expect(validator.is_word_guess_blank?(word)).to be false
+    end
+
+  end
+
   describe '#all_downcase?' do
 
     it 'will return false if parameter is not in downcase' do

@@ -14,7 +14,6 @@ class Game
     @io_handler.print(@prompter.prompt_for_game_greeting)
     word = player_one_pick_word
     @game_view.clear_view
-    @io_handler.print(@game_view.blank_word(word))
     @io_handler.print(player_two_guess_word(word))
   end
 
@@ -28,6 +27,7 @@ class Game
     end_of_game = false
     @io_handler.print(@game_view.initialize_hangman_body)
     while ! end_of_game
+        @io_handler.print(@game_view.blank_word(word))
         @io_handler.print(@prompter.prompt_for_letter)
         letter = @validator.validate_selection(@prompter.prompt_for_letter, 'is_a_letter?').downcase
         @io_handler.print(@validator.validate_body_part_removal(@validator.is_letter_present_in_word?(word, letter)))
@@ -37,6 +37,7 @@ class Game
         @io_handler.print(@game_view.guessed_letters)
         @io_handler.print(@prompter.prompt_for_word_guess)
         word_guess = @io_handler.get_input
+        @io_handler.print(@validator.validate_body_part_removal(@validator.is_word_guess_blank?(word_guess)))
         counter += 1
         end_of_game = @validator.end_of_game?(word, word_guess, counter)
     end

@@ -46,4 +46,10 @@ class GameView
     "   " + "__|" + "     |__"
   end
 
+  def initialize_hangman_body
+    body_array = [display_hangman_head, display_hangman_upper_torso, 
+                  display_hangman_arms, display_hangman_lower_torso, 
+                  display_hangman_legs, display_hangman_feet]
+  end
+
 end

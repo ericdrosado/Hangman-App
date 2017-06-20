@@ -79,10 +79,6 @@ describe 'Game' do
 
     after { game.player_two_guess_word("test") }
 
-    it 'will receive initialize_hangman_body from game_view' do
-      expect(game_view).to receive(:initialize_hangman_body)
-    end
-
     it 'will receive prompt_for_letter from prompter' do
       expect(prompter).to receive(:prompt_for_letter).at_least(:once)
     end

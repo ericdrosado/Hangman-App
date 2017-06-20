@@ -26,10 +26,11 @@ class Game
   def player_two_guess_word word
     counter = 0
     end_of_game = false
+    @io_handler.print(@game_view.initialize_hangman_body)
     while ! end_of_game
-        @io_handler.print(@game_view.initialize_hangman_body)
         @io_handler.print(@prompter.prompt_for_letter)
         letter = @validator.validate_selection(@prompter.prompt_for_letter, 'is_a_letter?').downcase
+        @io_handler.print(@validator.validate_body_part_removal(@validator.is_letter_present_in_word?(word, letter)))
         @game_view.guessed_letters_view(letter)
         word = @game_view.swap_letters_by_case(word, letter)
         @io_handler.print(@game_view.blank_word(word))

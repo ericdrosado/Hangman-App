@@ -7,6 +7,6 @@ require_relative 'validator'
 game_view = GameView.new
 io_handler = IOHandler.new
 prompter = Prompter.new
-validator = Validator.new(prompter, io_handler)
+validator = Validator.new(game_view, prompter, io_handler)
 game = Game.new(game_view, io_handler, prompter, validator)
 game.play_game

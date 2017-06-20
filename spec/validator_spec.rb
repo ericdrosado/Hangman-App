@@ -114,7 +114,6 @@ describe 'Validator' do
 
     it 'will return body_array with one index removed if boolean is false' do
       boolean = true
-      game_view.initialize_hangman_body
       expect(validator.validate_body_part_removal(boolean)).to eq game_view.remove_hangman_body_part
     end
 

@@ -88,19 +88,8 @@ describe 'GameView' do
 
   end
 
-  describe '#initialize_hangman_body' do
-
-    it 'will return an array' do
-      expect(game_view.initialize_hangman_body).to match_array [game_view.display_hangman_head, game_view.display_hangman_upper_torso, 
-                                                                game_view.display_hangman_arms, game_view.display_hangman_lower_torso, 
-                                                                game_view.display_hangman_legs, game_view.display_hangman_feet]
-    end
-
-  end
-
   describe '#remove_hangman_body_part' do
     it 'will remove last index of body_array' do
-      game_view.initialize_hangman_body
       expect(game_view.remove_hangman_body_part).to match_array [game_view.display_hangman_head, game_view.display_hangman_upper_torso, 
                                                                  game_view.display_hangman_arms, game_view.display_hangman_lower_torso, 
                                                                  game_view.display_hangman_legs]

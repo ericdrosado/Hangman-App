@@ -30,6 +30,14 @@ class Validator
     false
   end
 
+  def is_guess_correct? boolean
+    if boolean
+      @prompter.prompt_correct_guess
+    else
+      @prompter.prompt_incorrect_guess
+    end
+  end
+
   def validate_body_part_removal boolean
     if boolean
       @game_view.body_array

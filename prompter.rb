@@ -16,6 +16,14 @@ class Prompter
     "Do you know the answer? Leave this area blank and press enter if you do not know."
   end
 
+  def prompt_incorrect_guess
+    "That guess is not correct."
+  end
+
+  def prompt_correct_guess
+    "That guess is correct!"
+  end
+
   def prompt_you_win
     "You win!"
   end

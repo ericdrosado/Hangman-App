@@ -105,6 +105,20 @@ describe 'Validator' do
 
   end
 
+  describe '#is_guess_correct?' do
+
+    it 'will return prompt_correct_guess if true' do
+      boolean = true
+      expect(validator.is_guess_correct?(boolean)).to eq prompter.prompt_correct_guess
+    end
+
+    it 'will return prompt_incorrect_guess if false' do
+      boolean = false
+      expect(validator.is_guess_correct?(boolean)).to eq prompter.prompt_incorrect_guess
+    end
+
+  end
+
   describe '#validate_body_part_removal' do
 
     it 'will return body_array if boolean is true' do

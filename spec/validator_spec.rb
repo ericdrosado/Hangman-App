@@ -76,4 +76,68 @@ describe 'Validator' do
 
   end
 
+  describe '#correct_word?' do
+
+    it 'will return false if user guess is not correct word' do
+      expect(validator.correct_word?("TEST", "NO")).to be false
+    end
+
+    it 'will return true if user guess is correct word' do
+      expect(validator.correct_word?("TEST", "TEST")).to be true      
+    end
+
+  end
+
+  describe '#all_downcase?' do
+
+    it 'will return false if parameter is not in downcase' do
+      expect(validator.all_downcase?("TEST")).to be false
+    end
+
+    it 'will return true if parameter is in downcase' do
+      expect(validator.all_downcase?("test")).to be true      
+    end
+
+  end
+
+  describe '#end_of_game?' do
+
+    it 'will return false if it is not the correct word' do
+      expect(validator.end_of_game?("TEST", "no", 0)).to be false
+    end
+
+    it 'will return false if all the letters have not been guessed' do
+      expect(validator.end_of_game?("TEST", "no", 0)).to be false
+    end
+
+    it 'will return false if player two has not had six tries' do
+      expect(validator.end_of_game?("TEST", "no", 0)).to be false
+    end
+
+    it 'will return true if it is the correct word' do
+      expect(validator.end_of_game?("TEST", "test", 0)).to be true
+    end
+
+    it 'will return true if all the letters have been guessed' do
+      expect(validator.end_of_game?("test", "no", 0)).to be true
+    end
+
+    it 'will return true if player two has not had six tries' do
+      expect(validator.end_of_game?("TEST", "no", 6)).to be true
+    end
+
+  end
+
+  describe '#validate_win_or_loss' do
+
+    it 'will return lose prompt if counter == 6' do
+      expect(validator.validate_win_or_loss(6)).to eq "You lose!"
+    end
+
+    it 'will return win prompt if counter equals a number other than 6' do
+      expect(validator.validate_win_or_loss(5)).to eq "You win!"
+    end
+
+  end
+
 end

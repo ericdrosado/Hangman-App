@@ -179,6 +179,22 @@ describe 'Validator' do
 
   end
 
+  describe '#validate_guess_counter_count' do
+
+    it 'will increment guess_counter if false' do
+      boolean = false
+      guess_counter = 0
+      expect(validator.validate_guess_counter_count(boolean, guess_counter)).to eq 1
+    end
+
+    it 'will not increment guess_counter if true' do
+      boolean = true
+      guess_counter = 0
+      expect(validator.validate_guess_counter_count(boolean, guess_counter)).to eq 0
+    end
+
+  end
+
   describe '#end_of_game?' do
 
     it 'will return false if it is not the correct word' do
@@ -201,7 +217,7 @@ describe 'Validator' do
       expect(validator.end_of_game?("test", "no", 0)).to be true
     end
 
-    it 'will return true if player two has not had six tries' do
+    it 'will return true if player two has had six tries' do
       expect(validator.end_of_game?("TEST", "no", 6)).to be true
     end
 

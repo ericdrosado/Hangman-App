@@ -145,16 +145,24 @@ describe 'Validator' do
 
   end
 
-  describe '#is_word_guess_blank?' do
+  describe '#validate_word_guess_for_body_part_removal' do
 
-    it 'will return true if word_guess is blank' do
-      word = ""
-      expect(validator.is_word_guess_blank?(word)).to be true
+    it 'will return body_array if word_guess is blank' do
+      word_guess = ""
+      word = "TEST"
+      expect(validator.validate_word_guess_for_body_part_removal(word, word_guess)).to eq game_view.body_array
     end
 
-    it 'will return false if word_guess is not blank' do
-      word = "test"
-      expect(validator.is_word_guess_blank?(word)).to be false
+    it 'will return remove_hangman_body_part if word_guess is not blank and incorrect' do
+      word_guess = "Team"
+      word = "TEST"
+      expect(validator.validate_word_guess_for_body_part_removal(word, word_guess)).to eq game_view.remove_hangman_body_part
+    end
+
+    it 'will return body_array if word_guess is not blank and correct' do
+      word_guess = "test"
+      word = "TEST"
+      expect(validator.validate_word_guess_for_body_part_removal(word, word_guess)).to eq game_view.body_array
     end
 
   end

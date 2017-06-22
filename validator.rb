@@ -50,6 +50,14 @@ class Validator
     word.upcase == word_guess.upcase
   end
 
+  def validate_word_guess word, word_guess
+    if word_guess == ""
+      return true
+    else
+      correct_word?(word, word_guess)
+    end
+  end
+
   def validate_word_guess_for_body_part_removal word, word_guess
     if word_guess == ""
       validate_body_part_removal(true)

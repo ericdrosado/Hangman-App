@@ -145,6 +145,26 @@ describe 'Validator' do
 
   end
 
+  describe '#validate_word_guess' do
+    it 'will return true if word_guess is blank' do
+      word_guess = ""
+      word = "TEST"
+      expect(validator.validate_word_guess(word, word_guess)).to be true
+    end
+
+    it 'will return true if word_guess is correct' do
+      word_guess = "test"
+      word = "TEST"
+      expect(validator.validate_word_guess(word, word_guess)).to be true
+    end
+
+    it 'will return false if word_guess is incorrect' do
+      word_guess = "team"
+      word = "TEST"
+      expect(validator.validate_word_guess(word, word_guess)).to be false
+    end
+  end
+
   describe '#validate_word_guess_for_body_part_removal' do
 
     it 'will return body_array if word_guess is blank' do

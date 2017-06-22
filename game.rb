@@ -41,7 +41,7 @@ class Game
         word_guess = @io_handler.get_input
         @io_handler.print(@validator.validate_word_guess_for_body_part_removal(word, word_guess))
         @io_handler.print(@validator.is_guess_correct?(@validator.correct_word?(word, word_guess)))
-        guess_counter = @validator.validate_guess_counter_count(@validator.correct_word?(word, word_guess), guess_counter)
+        guess_counter = @validator.validate_guess_counter_count(@validator.validate_word_guess(word, word_guess), guess_counter)
         end_of_game = @validator.end_of_game?(word, word_guess, guess_counter)
     end
     @validator.validate_win_or_loss(guess_counter)

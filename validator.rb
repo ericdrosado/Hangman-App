@@ -42,6 +42,10 @@ class Validator
     word.upcase == word_guess.upcase
   end
 
+  def is_word_guess_blank? word_guess
+    word_guess == ""
+  end
+
   def all_downcase? word
     !! word.match(/^[a-z]+$/)
   end

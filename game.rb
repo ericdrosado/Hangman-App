@@ -31,13 +31,15 @@ class Game
         @io_handler.print(@prompter.prompt_for_letter)
         letter = @validator.validate_selection(@prompter.prompt_for_letter, 'is_a_letter?').downcase
         @io_handler.print(@validator.validate_body_part_removal(@validator.is_letter_present_in_word?(word, letter)))
+        @io_handler.print(@validator.is_guess_correct?(@validator.is_letter_present_in_word?(word, letter)))
         @game_view.guessed_letters_view(letter)
         word = @game_view.swap_letters_by_case(word, letter)
         @io_handler.print(@game_view.blank_word(word))
         @io_handler.print(@game_view.guessed_letters)
         @io_handler.print(@prompter.prompt_for_word_guess)
         word_guess = @io_handler.get_input
-        @io_handler.print(@validator.validate_body_part_removal(@validator.is_word_guess_blank?(word_guess)))
+        @io_handler.print(@validator.validate_word_guess_for_body_part_removal(word, word_guess))
+        @io_handler.print(@validator.is_guess_correct?(@validator.correct_word?(word, word_guess)))
         counter += 1
         end_of_game = @validator.end_of_game?(word, word_guess, counter)
     end

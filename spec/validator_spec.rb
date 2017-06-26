@@ -4,9 +4,10 @@ require_relative 'mocks/mock_io_handler'
 
 describe 'Validator' do
 
+  game_view = GameView.new
   prompter = Prompter.new
   mock_io_handler = MockIOHandler.new
-  validator = Validator.new(prompter, mock_io_handler)
+  validator = Validator.new(game_view, prompter, mock_io_handler)
   
   describe '#is_a_word?' do
 
@@ -72,6 +73,48 @@ describe 'Validator' do
       expect(mock_io_handler).to receive(:print).with('Player 2, please choose a letter for Hangman.')
       expect(mock_io_handler).to receive(:get_input).and_return('t')
       expect(validator.validate_selection(prompter.prompt_for_letter, 'is_a_letter?')).to eq "t"
+    end
+
+  end
+
+  describe '#is_letter_present_in_word?' do
+
+    it 'will return true if a letter is present' do
+      word = "TEST"
+      letter = "t"
+      expect(validator.is_letter_present_in_word?(word, letter)).to be true
+    end
+
+    it 'will return true if a letter is present' do
+      word = "TEST"
+      letter = "e"
+      expect(validator.is_letter_present_in_word?(word, letter)).to be true
+    end
+
+    it 'will return false if a letter is not present' do
+      word = "TEST"
+      letter = "n"
+      expect(validator.is_letter_present_in_word?(word, letter)).to be false
+    end
+
+    it 'will return false if a letter is not present' do
+      word = "TEST"
+      letter = "o"
+      expect(validator.is_letter_present_in_word?(word, letter)).to be false
+    end
+
+  end
+
+  describe '#validate_body_part_removal' do
+
+    it 'will return body_array if boolean is true' do
+      boolean = true
+      expect(validator.validate_body_part_removal(boolean)).to eq game_view.body_array
+    end
+
+    it 'will return body_array with one index removed if boolean is false' do
+      boolean = true
+      expect(validator.validate_body_part_removal(boolean)).to eq game_view.remove_hangman_body_part
     end
 
   end

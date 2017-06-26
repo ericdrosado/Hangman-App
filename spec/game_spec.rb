@@ -8,12 +8,13 @@ describe 'Game' do
   game_view = GameView.new
   mock_io_handler = MockIOHandler.new
   prompter = Prompter.new
-  validator = Validator.new(prompter, mock_io_handler)
+  validator = Validator.new(game_view, prompter, mock_io_handler)
   game = Game.new(game_view, mock_io_handler, prompter, validator)
 
   before do
       mock_io_handler.get_input.stub(:upcase)
       mock_io_handler.get_input.stub(:downcase)
+      validator.stub(:is_letter_present_in_word?)
       validator.stub(:validate_selection)
       game_view.stub(:blank_word)
       game_view.stub(:guessed_letters_view)

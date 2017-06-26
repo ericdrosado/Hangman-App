@@ -48,5 +48,10 @@ class GameView
   def display_hangman_feet
     "   " + "__|" + "     |__"
   end
+  
+  def remove_hangman_body_part
+    @body_array.pop
+    @body_array
+  end
 
 end

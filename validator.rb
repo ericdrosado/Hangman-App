@@ -1,6 +1,7 @@
 class Validator
 
-  def initialize prompter, io_handler
+  def initialize game_view, prompter, io_handler
+    @game_view = game_view
     @prompter = prompter
     @io_handler = io_handler
   end
@@ -18,6 +19,23 @@ class Validator
       @io_handler.print(prompt)
     end
     type
+  end
+
+  def is_letter_present_in_word? word, letter
+    word.each_char do |char|
+      if char == letter.upcase
+        return true
+      end
+    end
+    false
+  end
+
+  def validate_body_part_removal boolean
+    if boolean
+      @game_view.body_array
+    else
+      @game_view.remove_hangman_body_part
+    end
   end
 
   def correct_word? word, word_guess

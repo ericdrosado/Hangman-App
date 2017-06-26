@@ -50,6 +50,14 @@ class Validator
     word.upcase == word_guess.upcase
   end
 
+  def validate_word_guess word, word_guess
+    if word_guess == ""
+      return true
+    else
+      correct_word?(word, word_guess)
+    end
+  end
+
   def validate_word_guess_for_body_part_removal word, word_guess
     if word_guess == ""
       validate_body_part_removal(true)
@@ -62,12 +70,20 @@ class Validator
     !! word.match(/^[a-z]+$/)
   end
 
-  def end_of_game? word, word_guess, counter
-    correct_word?(word, word_guess) || all_downcase?(word) || counter == 6
+  def validate_guess_counter_count boolean, guess_counter
+    if boolean
+      guess_counter
+    else
+      guess_counter += 1
+    end
   end
 
-  def validate_win_or_loss counter
-    if counter == 6
+  def end_of_game? word, word_guess, guess_counter
+    correct_word?(word, word_guess) || all_downcase?(word) || guess_counter == 6
+  end
+
+  def validate_win_or_loss guess_counter
+    if guess_counter == 6
       @prompter.prompt_you_lose
     else
       @prompter.prompt_you_win

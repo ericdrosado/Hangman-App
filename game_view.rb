@@ -1,9 +1,12 @@
 class GameView
 
-  attr_reader :guessed_letters
+  attr_reader :guessed_letters, :body_array
 
   def initialize
     @guessed_letters = "Your guessed letters are:  "
+    @body_array = [display_hangman_head, display_hangman_upper_torso, 
+                  display_hangman_arms, display_hangman_lower_torso, 
+                  display_hangman_legs, display_hangman_feet]
   end
 
   def blank_word word
@@ -20,6 +23,30 @@ class GameView
 
   def clear_view
     system "clear"
+  end
+
+  def display_hangman_head
+    "      " + "_____\n" + "     " + "( * * )\n" +  "      " + "(___)"
+  end
+
+  def display_hangman_upper_torso
+    "        " + "|\n" + "        " + "|\n" 
+  end
+
+  def display_hangman_arms
+    "    " + "\\___" + "|" + "___/"
+  end
+
+  def display_hangman_lower_torso
+    "        " + "|\n" + "        " + "|\n" 
+  end
+
+  def display_hangman_legs
+    "       " + "/ \\\n" + "      " + "/   \\\n" + "     " + "/     \\"
+  end
+
+  def display_hangman_feet
+    "   " + "__|" + "     |__"
   end
 
 end

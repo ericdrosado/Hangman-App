@@ -49,6 +49,10 @@ class GameView
     "   " + "__|" + "     |__"
   end
 
+  def get_current_hangman
+    @body_array
+  end
+
   def remove_hangman_body_part
     @body_array.pop
     @body_array

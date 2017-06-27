@@ -25,7 +25,7 @@ class Game
   def player_two_guess_word word
     incorrect_guess_counter = 0
     end_of_game = false
-    @io_handler.print(@game_view.body_array)
+    @io_handler.print(@game_view.get_current_hangman)
     while ! end_of_game
         @io_handler.print(@game_view.blank_word(word))
         @io_handler.print(@prompter.prompt_for_letter)

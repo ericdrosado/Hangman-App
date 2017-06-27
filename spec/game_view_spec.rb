@@ -87,12 +87,27 @@ describe 'GameView' do
     end
 
   end
+
+  describe '#get_current_hangman' do
+
+    it 'will return body_array' do
+      expect(game_view.get_current_hangman).to match_array game_view.body_array
+    end
+
+    it 'will return current body_array without display_hangman_feet if remove_hangman_body_part is called' do
+      game_view.remove_hangman_body_part
+      expect(game_view.get_current_hangman).to match_array [game_view.display_hangman_head, game_view.display_hangman_upper_torso, 
+                                                            game_view.display_hangman_arms, game_view.display_hangman_lower_torso, 
+                                                            game_view.display_hangman_legs]
+    end
+
+  end
   
   describe '#remove_hangman_body_part' do
+
     it 'will remove last index of body_array' do
       expect(game_view.remove_hangman_body_part).to match_array [game_view.display_hangman_head, game_view.display_hangman_upper_torso, 
-                                                                 game_view.display_hangman_arms, game_view.display_hangman_lower_torso, 
-                                                                 game_view.display_hangman_legs]
+                                                                 game_view.display_hangman_arms, game_view.display_hangman_lower_torso]
     end
   end
   

@@ -30,6 +30,7 @@ class Game
         @io_handler.print(@game_view.blank_word(word))
         @io_handler.print(@prompter.prompt_for_letter)
         letter = @validator.validate_selection(@prompter.prompt_for_letter, 'is_a_letter?').downcase
+        @game_view.clear_view
         @io_handler.print(@validator.validate_body_part_removal(@validator.is_letter_present_in_word?(word, letter)))
         @io_handler.print(@validator.is_guess_correct?(@validator.is_letter_present_in_word?(word, letter)))
         incorrect_guess_counter = @validator.validate_guess_counter_count(@validator.is_letter_present_in_word?(word, letter), incorrect_guess_counter)
@@ -39,6 +40,7 @@ class Game
         @io_handler.print(@game_view.guessed_letters)
         @io_handler.print(@prompter.prompt_for_word_guess)
         word_guess = @io_handler.get_input
+        @game_view.clear_view
         @io_handler.print(@validator.validate_word_guess_for_body_part_removal(word, word_guess))
         @io_handler.print(@validator.is_guess_correct?(@validator.correct_word?(word, word_guess)))
         incorrect_guess_counter = @validator.validate_guess_counter_count(@validator.validate_word_guess(word, word_guess), incorrect_guess_counter)

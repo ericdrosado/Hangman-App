@@ -26,27 +26,33 @@ class GameView
   end
 
   def display_hangman_head
-    "      " + "_____\n" + "     " + "( * * )\n" +  "      " + "(___)"
+    "      _____\n" + 
+    "     ( * * )\n" +  
+    "      (___)"
   end
 
   def display_hangman_upper_torso
-    "        " + "|\n" + "        " + "|\n" 
+    "        |\n" + 
+    "        |\n" 
   end
 
   def display_hangman_arms
-    "    " + "\\___" + "|" + "___/"
+    "    \\___|___/"
   end
 
   def display_hangman_lower_torso
-    "        " + "|\n" + "        " + "|\n" 
+    "        |\n" + 
+    "        |\n" 
   end
 
   def display_hangman_legs
-    "       " + "/ \\\n" + "      " + "/   \\\n" + "     " + "/     \\"
+    "       / \\\n" + 
+    "      /   \\\n" + 
+    "     /     \\"
   end
 
   def display_hangman_feet
-    "   " + "__|" + "     |__"
+    "   __|     |__"
   end
 
   def get_current_hangman

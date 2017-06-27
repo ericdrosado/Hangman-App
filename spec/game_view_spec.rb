@@ -43,7 +43,7 @@ describe 'GameView' do
   describe '#display_hangman_head' do
 
     it 'will return a string' do
-      expect(game_view.display_hangman_head).to eq "      " + "_____\n" + "     " + "( * * )\n" +  "      " + "(___)"
+      expect(game_view.display_hangman_head).to eq "      _____\n     ( * * )\n      (___)"
     end
 
   end
@@ -51,7 +51,7 @@ describe 'GameView' do
   describe '#display_hangman_upper_torso' do
 
     it 'will return a string' do
-      expect(game_view.display_hangman_upper_torso).to eq "        " + "|\n" + "        " + "|\n"
+      expect(game_view.display_hangman_upper_torso).to eq "        |\n        |\n"
     end
 
   end
@@ -59,7 +59,7 @@ describe 'GameView' do
   describe '#display_hangman_arms' do
 
     it 'will return a string' do
-      expect(game_view.display_hangman_arms).to eq "    " + "\\___" + "|" + "___/"
+      expect(game_view.display_hangman_arms).to eq "    \\___|___/"
     end
 
   end
@@ -67,7 +67,7 @@ describe 'GameView' do
   describe '#display_hangman_lower_torso' do
 
     it 'will return a string' do
-      expect(game_view.display_hangman_lower_torso).to eq "        " + "|\n" + "        " + "|\n"
+      expect(game_view.display_hangman_lower_torso).to eq "        |\n        |\n"
     end
 
   end
@@ -75,7 +75,7 @@ describe 'GameView' do
   describe '#display_hangman_legs' do
 
     it 'will return a string' do
-      expect(game_view.display_hangman_legs).to eq "       " + "/ \\\n" + "      " + "/   \\\n" + "     " + "/     \\"
+      expect(game_view.display_hangman_legs).to eq "       / \\\n      /   \\\n     /     \\"
     end
 
   end
@@ -83,7 +83,7 @@ describe 'GameView' do
   describe '#display_hangman_feet' do
 
     it 'will return a string' do
-      expect(game_view.display_hangman_feet).to eq "   " + "__|" + "     |__"
+      expect(game_view.display_hangman_feet).to eq "   __|     |__"
     end
 
   end

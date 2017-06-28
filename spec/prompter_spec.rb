@@ -28,6 +28,14 @@ describe 'Prompter' do
 
   end
 
+  describe '#prompt_not_a_word' do
+
+    it 'will return a string' do
+      expect(prompter.prompt_not_a_word).to eq "Your selection is not a word. Please enter a word."
+    end
+
+  end
+
   describe '#prompt_not_a_word_or_letter' do
 
     it 'will return a string' do
@@ -63,7 +71,8 @@ describe 'Prompter' do
   describe '#prompt_you_lose' do
 
     it 'will return a string' do
-      expect(prompter.prompt_you_lose).to eq "You lose!"
+      word = 'test'
+      expect(prompter.prompt_you_lose(word)).to eq "You lose! The correct word was: test"
     end
 
   end

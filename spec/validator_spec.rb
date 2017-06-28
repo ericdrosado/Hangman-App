@@ -51,16 +51,16 @@ describe 'Validator' do
 
   describe '#validate_selection' do
 
-    it 'will return a word if "is_a_word" is passed' do
+    it 'will return a valid word' do
       expect(mock_io_handler).to receive(:get_input).and_return('test')
-      expect(validator.validate_selection(prompter.prompt_for_word, 'is_a_word?')).to eq "test"
+      expect(validator.validate_selection).to eq "TEST"
     end
 
     it 'will prompt if not a word and take in a new word' do
       expect(mock_io_handler).to receive(:get_input).and_return('t')
-      expect(mock_io_handler).to receive(:print).with('Player 1, please choose a word for Hangman.')
+      expect(mock_io_handler).to receive(:print).with('Your selection is not a word. Please enter a word.')
       expect(mock_io_handler).to receive(:get_input).and_return('test')
-      expect(validator.validate_selection(prompter.prompt_for_word, 'is_a_word?')).to eq "test"
+      expect(validator.validate_selection).to eq "TEST"
     end
 
   end
@@ -256,12 +256,14 @@ describe 'Validator' do
 
   describe '#validate_win_or_loss' do
 
+    word = 'test'
+
     it 'will return lose prompt if counter == 6' do
-      expect(validator.validate_win_or_loss(6)).to eq "You lose!"
+      expect(validator.validate_win_or_loss(6, word)).to eq "You lose! The correct word was: test"
     end
 
     it 'will return win prompt if counter equals a number other than 6' do
-      expect(validator.validate_win_or_loss(5)).to eq "You win!"
+      expect(validator.validate_win_or_loss(5, word)).to eq "You win!"
     end
 
   end

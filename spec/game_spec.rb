@@ -72,7 +72,7 @@ describe 'Game' do
     end
 
     it 'will return an upcase word' do
-      expect(validator).to receive(:validate_selection).and_return("test")
+      expect(validator).to receive(:validate_selection).and_return("TEST")
       expect(game.player_one_pick_word).to eq "TEST"
     end
 
@@ -112,8 +112,9 @@ describe 'Game' do
     end
 
     it 'will return "You lose!" if player two loses' do
-      expect(game).to receive(:player_two_guess_word).and_return(prompter.prompt_you_lose).at_least(:once)
-      expect(game.player_two_guess_word("test")).to eq "You lose!"
+      word = 'test'
+      expect(game).to receive(:player_two_guess_word).and_return(prompter.prompt_you_lose(word)).at_least(:once)
+      expect(game.player_two_guess_word("test")).to eq "You lose! The correct word was: test"
     end
 
   end

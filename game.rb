@@ -19,7 +19,7 @@ class Game
 
   def player_one_pick_word
     @io_handler.print(@prompter.prompt_for_word)
-    @validator.validate_selection(@prompter.prompt_for_word, 'is_a_word?').upcase
+    @validator.validate_selection
   end
 
   def player_two_guess_word word
@@ -39,7 +39,7 @@ class Game
         @io_handler.print(@game_view.guessed_letters)
         end_of_game = @validator.end_of_game?(word, guess, incorrect_guess_counter)
     end
-    @validator.validate_win_or_loss(incorrect_guess_counter)
+    @validator.validate_win_or_loss(incorrect_guess_counter, word)
   end
 
 end

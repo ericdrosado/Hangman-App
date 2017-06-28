@@ -14,11 +14,20 @@ class Validator
     !! letter.match(/^[a-zA-Z]+$/) && letter.length < 2
   end
 
-  def validate_selection prompt, validation_type
-    while ! public_send(validation_type, type = @io_handler.get_input)
-      @io_handler.print(prompt)
+  # def validate_selection prompt, validation_type
+  #   while ! public_send(validation_type, type = @io_handler.get_input)
+  #     @io_handler.print(prompt)
+  #   end
+  #   type
+  # end
+
+   def validate_selection
+    word = @io_handler.get_input
+    while ! is_a_word?(word)
+      @io_handler.print(@prompter.prompt_not_a_word)
+      word = @io_handler.get_input
     end
-    type
+    word.upcase
   end
 
   def validate_guess
@@ -91,9 +100,9 @@ class Validator
     correct_word?(word, guess) || all_downcase?(word) || guess_counter == 6
   end
 
-  def validate_win_or_loss guess_counter
+  def validate_win_or_loss guess_counter, word
     if guess_counter == 6
-      @prompter.prompt_you_lose
+      @prompter.prompt_you_lose(word)
     else
       @prompter.prompt_you_win
     end

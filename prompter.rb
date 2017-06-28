@@ -8,12 +8,12 @@ class Prompter
     "Player 1, please choose a word for Hangman."
   end
 
-  def prompt_for_letter
-    "Player 2, please choose a letter for Hangman."
+  def prompt_for_guess
+    "If you would like to guess the word, type in your word guess or type in a letter guess."
   end
 
-  def prompt_for_word_guess
-    "Do you know the answer? Leave this area blank and press enter if you do not know."
+  def prompt_not_a_word_or_letter
+    "That is not a word or a letter. Please enter a word or letter guess."
   end
 
   def prompt_incorrect_guess

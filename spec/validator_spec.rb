@@ -56,11 +56,6 @@ describe 'Validator' do
       expect(validator.validate_selection(prompter.prompt_for_word, 'is_a_word?')).to eq "test"
     end
 
-    it 'will return a letter if "is_a_letter" is passed' do
-      expect(mock_io_handler).to receive(:get_input).and_return('t')
-      expect(validator.validate_selection(prompter.prompt_for_letter, 'is_a_letter?')).to eq "t"
-    end
-
     it 'will prompt if not a word and take in a new word' do
       expect(mock_io_handler).to receive(:get_input).and_return('t')
       expect(mock_io_handler).to receive(:print).with('Player 1, please choose a word for Hangman.')
@@ -68,11 +63,25 @@ describe 'Validator' do
       expect(validator.validate_selection(prompter.prompt_for_word, 'is_a_word?')).to eq "test"
     end
 
-    it 'will prompt if not a word and take in a new word' do
+  end
+
+  describe '#validate_guess' do
+
+    it 'will return guess if it is a word' do
       expect(mock_io_handler).to receive(:get_input).and_return('test')
-      expect(mock_io_handler).to receive(:print).with('Player 2, please choose a letter for Hangman.')
+      expect(validator.validate_guess).to eq 'test'
+    end
+
+    it 'will return guess if it is a letter' do
       expect(mock_io_handler).to receive(:get_input).and_return('t')
-      expect(validator.validate_selection(prompter.prompt_for_letter, 'is_a_letter?')).to eq "t"
+      expect(validator.validate_guess).to eq 't'
+    end
+
+    it 'will prompt if guess is not a word or a letter' do
+      expect(mock_io_handler).to receive(:get_input).and_return('!')
+      expect(mock_io_handler).to receive(:print).with(prompter.prompt_not_a_word_or_letter)
+      expect(mock_io_handler).to receive(:get_input).and_return('test')
+      expect(validator.validate_guess).to eq 'test'
     end
 
   end
@@ -105,16 +114,16 @@ describe 'Validator' do
 
   end
 
-  describe '#is_guess_correct?' do
+  describe '#is_guess_correct' do
 
     it 'will return prompt_correct_guess if true' do
       boolean = true
-      expect(validator.is_guess_correct?(boolean)).to eq prompter.prompt_correct_guess
+      expect(validator.is_guess_correct(boolean)).to eq prompter.prompt_correct_guess
     end
 
     it 'will return prompt_incorrect_guess if false' do
       boolean = false
-      expect(validator.is_guess_correct?(boolean)).to eq prompter.prompt_incorrect_guess
+      expect(validator.is_guess_correct(boolean)).to eq prompter.prompt_incorrect_guess
     end
 
   end
@@ -145,44 +154,46 @@ describe 'Validator' do
 
   end
 
-  describe '#validate_word_guess' do
-    it 'will return true if word_guess is blank' do
-      word_guess = ""
+  describe '#is_guess_correct?' do
+
+    it 'will return true if guess is a letter in the word' do
+      guess = "t"
       word = "TEST"
-      expect(validator.validate_word_guess(word, word_guess)).to be true
+      expect(validator.is_guess_correct?(word, guess)).to be true
     end
 
-    it 'will return true if word_guess is correct' do
-      word_guess = "test"
+    it 'will return true if guess is correct' do
+      guess = "test"
       word = "TEST"
-      expect(validator.validate_word_guess(word, word_guess)).to be true
+      expect(validator.is_guess_correct?(word, guess)).to be true
     end
 
-    it 'will return false if word_guess is incorrect' do
-      word_guess = "team"
+    it 'will return false if guess is incorrect' do
+      guess = "team"
       word = "TEST"
-      expect(validator.validate_word_guess(word, word_guess)).to be false
+      expect(validator.is_guess_correct?(word, guess)).to be false
     end
+
   end
 
-  describe '#validate_word_guess_for_body_part_removal' do
+  describe '#validate_guess_for_body_part_removal' do
 
-    it 'will return body_array if word_guess is blank' do
-      word_guess = ""
+    it 'will return body_array if letter guess is correct' do
+      guess = "t"
       word = "TEST"
-      expect(validator.validate_word_guess_for_body_part_removal(word, word_guess)).to eq game_view.body_array
+      expect(validator.validate_guess_for_body_part_removal(word, guess)).to eq game_view.body_array
     end
 
-    it 'will return remove_hangman_body_part if word_guess is not blank and incorrect' do
-      word_guess = "Team"
+    it 'will return remove_hangman_body_part if guess is incorrect' do
+      guess = "Team"
       word = "TEST"
-      expect(validator.validate_word_guess_for_body_part_removal(word, word_guess)).to eq game_view.remove_hangman_body_part
+      expect(validator.validate_guess_for_body_part_removal(word, guess)).to eq game_view.remove_hangman_body_part
     end
 
-    it 'will return body_array if word_guess is not blank and correct' do
-      word_guess = "test"
+    it 'will return body_array if word_guess is correct' do
+      guess = "test"
       word = "TEST"
-      expect(validator.validate_word_guess_for_body_part_removal(word, word_guess)).to eq game_view.body_array
+      expect(validator.validate_guess_for_body_part_removal(word, guess)).to eq game_view.body_array
     end
 
   end

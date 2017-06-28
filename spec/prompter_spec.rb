@@ -20,18 +20,18 @@ describe 'Prompter' do
 
   end
 
-  describe '#prompt_for_letter' do
+  describe '#prompt_for_guess' do
 
     it 'will return a string' do
-      expect(prompter.prompt_for_letter).to eq "Player 2, please choose a letter for Hangman."
+      expect(prompter.prompt_for_guess).to eq "If you would like to guess the word, type in your word guess or type in a letter guess."
     end
 
   end
 
-  describe '#prompt_for_word_guess' do
+  describe '#prompt_not_a_word_or_letter' do
 
     it 'will return a string' do
-      expect(prompter.prompt_for_word_guess).to eq "Do you know the answer? Leave this area blank and press enter if you do not know."
+      expect(prompter.prompt_not_a_word_or_letter).to eq "That is not a word or a letter. Please enter a word or letter guess."
     end
 
   end

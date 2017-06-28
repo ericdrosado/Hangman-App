@@ -31,11 +31,11 @@ describe 'GameView' do
   describe '#guessed_letters_view' do
 
     it 'will concat "t" to guessed_letters' do
-      expect(game_view.guessed_letters_view("t")).to eq "Your guessed letters are:  t "
+      expect(game_view.guessed_letters_view("t")).to eq "Your guesses are:  t "
     end
 
     it 'will concat "e" to guessed_letters' do
-      expect(game_view.guessed_letters_view("e")).to eq "Your guessed letters are:  t e "
+      expect(game_view.guessed_letters_view("e")).to eq "Your guesses are:  t e "
     end
 
   end

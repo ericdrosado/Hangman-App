@@ -3,7 +3,7 @@ class GameView
   attr_reader :guessed_letters, :body_array
 
   def initialize
-    @guessed_letters = "Your guessed letters are:  "
+    @guessed_letters = "Your guesses are:  "
     @body_array = [display_hangman_head, display_hangman_upper_torso, 
                   display_hangman_arms, display_hangman_lower_torso, 
                   display_hangman_legs, display_hangman_feet]
@@ -13,8 +13,13 @@ class GameView
     word = word.gsub(/[A-Z]/, "_ ")
   end
 
-  def swap_letters_by_case word, letter
-    word = word.gsub(letter.upcase, letter)
+# this is validating, need to remove validation
+  def swap_letters_by_case word, guess
+    if guess.match(/\b[A-Za-z]\b/)
+      word = word.gsub(guess.upcase, guess)
+    else
+      word
+    end
   end
 
   def guessed_letters_view letter

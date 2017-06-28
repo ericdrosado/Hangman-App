@@ -16,6 +16,9 @@ describe 'Game' do
       mock_io_handler.get_input.stub(:downcase)
       validator.stub(:is_letter_present_in_word?)
       validator.stub(:validate_selection)
+      validator.stub(:validate_guess)
+      validator.stub(:is_guess_correct?)
+      validator.stub(:validate_guess_for_body_part_removal)
       game_view.stub(:blank_word)
       game_view.stub(:guessed_letters_view)
       game_view.stub(:swap_letters_by_case)
@@ -79,16 +82,8 @@ describe 'Game' do
 
     after { game.player_two_guess_word("test") }
 
-    it 'will receive prompt_for_letter from prompter' do
-      expect(prompter).to receive(:prompt_for_letter).at_least(:once)
-    end
-
     it 'will receive print from mock_io_handler' do
       expect(mock_io_handler).to receive(:print).at_least(:once)
-    end
-
-    it 'will receive validate_selection from validator' do
-      expect(validator).to receive :validate_selection
     end
 
     it 'will receive guessed_letters_view from game_view' do
@@ -108,11 +103,7 @@ describe 'Game' do
     end
 
     it 'will receive prompt_for_word_guess from prompter' do
-      expect(prompter).to receive :prompt_for_word_guess
-    end
-
-    it 'will receive get_input from mock_io_handler' do
-      expect(mock_io_handler).to receive(:get_input)
+      expect(prompter).to receive :prompt_for_guess
     end
 
     it 'will return "You win!" if player two wins' do

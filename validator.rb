@@ -21,6 +21,15 @@ class Validator
     type
   end
 
+  def validate_guess
+    guess = @io_handler.get_input
+    while ! is_a_word?(guess) && ! is_a_letter?(guess)
+      @io_handler.print(@prompter.prompt_not_a_word_or_letter)
+      guess = @io_handler.get_input
+    end
+    guess
+  end
+
   def is_letter_present_in_word? word, letter
     word.each_char do |char|
       if char == letter.upcase
@@ -30,7 +39,7 @@ class Validator
     false
   end
 
-  def is_guess_correct? boolean
+  def is_guess_correct boolean
     if boolean
       @prompter.prompt_correct_guess
     else
@@ -46,23 +55,23 @@ class Validator
     end
   end
 
-  def correct_word? word, word_guess
-    word.upcase == word_guess.upcase
+  def correct_word? word, guess
+    word.upcase == guess.upcase
   end
 
-  def validate_word_guess word, word_guess
-    if word_guess == ""
-      return true
+  def is_guess_correct? word, guess
+    if guess.match(/\b[A-Za-z]\b/)
+      is_letter_present_in_word?(word, guess)
     else
-      correct_word?(word, word_guess)
+      correct_word?(word, guess)
     end
   end
 
-  def validate_word_guess_for_body_part_removal word, word_guess
-    if word_guess == ""
-      validate_body_part_removal(true)
+  def validate_guess_for_body_part_removal word, guess
+    if guess.match(/\b[A-Za-z]\b/)
+      validate_body_part_removal(is_letter_present_in_word?(word, guess))
     else 
-      validate_body_part_removal(correct_word?(word, word_guess))
+      validate_body_part_removal(correct_word?(word, guess))
     end
   end
 
@@ -78,8 +87,8 @@ class Validator
     end
   end
 
-  def end_of_game? word, word_guess, guess_counter
-    correct_word?(word, word_guess) || all_downcase?(word) || guess_counter == 6
+  def end_of_game? word, guess, guess_counter
+    correct_word?(word, guess) || all_downcase?(word) || guess_counter == 6
   end
 
   def validate_win_or_loss guess_counter

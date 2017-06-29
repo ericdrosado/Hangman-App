@@ -1,14 +1,18 @@
 class Prompter
 
-  def prompt_for_game_greeting
+  def get_prompt prompt
+    send(prompt)
+  end
+
+  def prompt_game_greeting
     "Welcome to Hangman!"
   end
 
-  def prompt_for_word
+  def prompt_word
     "Player 1, please choose a word for Hangman."
   end
 
-  def prompt_for_guess
+  def prompt_guess
     "If you would like to guess the word, type in your word guess or type in a letter guess."
   end
 
@@ -21,7 +25,7 @@ class Prompter
   end
 
   def prompt_incorrect_guess
-    "That guess is not correct."
+    "That guess is not the word nor in the word or you may have already used that guess."
   end
 
   def prompt_correct_guess
@@ -29,11 +33,11 @@ class Prompter
   end
 
   def prompt_you_win
-    "You win!"
+    "You win! You knew the correct word was: "
   end
 
-  def prompt_you_lose word
-    "You lose! The correct word was: #{word}"
+  def prompt_you_lose
+    "You lose! The correct word was: "
   end
 
 end

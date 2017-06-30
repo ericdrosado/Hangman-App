@@ -4,10 +4,6 @@ class Validator
     @incorrect_guess_counter = 0
   end
 
-  def validate_word word
-    is_a_word?(word)
-  end
-
   def validate_guess guess
     is_a_word?(guess) || is_a_letter?(guess)
   end

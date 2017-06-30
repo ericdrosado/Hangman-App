@@ -18,7 +18,7 @@ class Game
   end
 
   def get_word
-    while ! @validator.validate_word(word = @game_view.get_input)
+    while ! @validator.is_a_word?(word = @game_view.get_input)
       @game_view.get_prompt("prompt_not_a_word")
     end
     word.upcase

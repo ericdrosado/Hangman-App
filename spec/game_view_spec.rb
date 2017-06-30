@@ -150,19 +150,63 @@ describe 'GameView' do
 
   describe '#get_current_hangman_view_correct' do
 
-    it 'will return swapped letters with the current hangman game view' do
-      word = "TEST"
-      guess = "t"
-      expect(game_view.get_current_hangman_view_correct(word, guess)).to eq "tESt"
+    let(:guess) {guess = "t"}
+    let(:word) {word = "test"}
+
+    before { game_view.stub(:clear_view) }
+
+    after { game_view.get_current_hangman_view_correct(word, guess) }
+
+    it 'will receive clear_view' do
+      expect(game_view).to receive(:clear_view)
+    end
+
+    it 'will receive get_prompt' do
+      expect(game_view).to receive(:get_prompt)
+    end
+
+    it 'will receive print from mock_io_handler to print hangman_body' do
+      expect(mock_io_handler).to receive(:print).at_least(:once)
+    end
+
+    it 'will receive get_guesses' do
+      expect(game_view).to receive(:get_guesses).with(guess)
+    end
+
+    it 'will receive swap_letters_by_case' do
+      expect(game_view).to receive(:swap_letters_by_case)
     end
 
   end
 
   describe '#get_current_hangman_view_incorrect' do
-    it 'will return guesses with the current hangman game view' do
-      guess = "t"
-      expect(game_view.get_current_hangman_view_incorrect(guess)).to eq "Your guesses are:  t the t t "
+
+    let(:guess) {guess = "w"}
+
+    before { game_view.stub(:clear_view) }
+
+    after { game_view.get_current_hangman_view_incorrect(guess) }
+
+    it 'will receive clear_view' do
+      expect(game_view).to receive(:clear_view)
     end
+
+    it 'will receive get_prompt' do
+      expect(game_view).to receive(:get_prompt)
+    end
+
+    it 'will receive print from mock_io_handler to print hangman_body' do
+      expect(mock_io_handler).to receive(:print).at_least(:once)
+    end
+
+    it 'will receive get_guesses' do
+      expect(game_view).to receive(:get_guesses).with(guess)
+    end
+
+    it 'will receive get_guesses' do
+      expect(game_view).to receive(:get_guesses)
+    end
+
   end
    
 end
